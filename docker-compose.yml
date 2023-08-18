@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  redis:
+    image: redis
+  api:
+    build: .
+    command: gunicorn -b 0.0.0.0:8000 src.app:app --reload
+    env_file: .env
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/opt/app/
+    depends_on:
+      - redis
+  worker:
+    build: .
+    command: celery -A src.tasks worker --loglevel=INFO
+    env_file: .env
+    volumes:
+      - .:/opt/app/
+    depends_on:
+      - redis
+  test:
+    build:
+      context: .
+    command: pytest src/tests/test_app.py
+      
