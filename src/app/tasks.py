@@ -1,9 +1,8 @@
 import json
 import os
 import requests
-import time
-from celery import Celery, Task, exceptions
-from .util import CITIES_IDS
+from celery import Celery
+from src.util import CITIES_IDS
 
 
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://redis:6379')

@@ -5,7 +5,7 @@ services:
     image: redis
   api:
     build: .
-    command: gunicorn -b 0.0.0.0:8000 src.app:app --reload
+    command: gunicorn -b 0.0.0.0:8000 src.app.app:app --reload
     env_file: .env
     ports:
       - 8000:8000
@@ -15,14 +15,11 @@ services:
       - redis
   worker:
     build: .
-    command: celery -A src.tasks worker --loglevel=INFO
+    command: celery -A src.app.tasks worker --loglevel=INFO
     env_file: .env
     volumes:
       - .:/opt/app/
     depends_on:
       - redis
-  test:
-    build:
-      context: .
-    command: pytest src/tests/test_app.py
+
       

@@ -25,8 +25,13 @@ def start_capturing_weather_info():
         }), 500
 
 
-@app.route('/weather/<user_id>/progress', methods=['GET'])
-def show_weather_capture_progress(user_id):
+@app.route('/weather/progress', methods=['GET'])
+def show_weather_capture_progress():
+    user_id = request.args.get('user_id')
+    if not user_id:
+        return jsonify({
+            'error': 'Param "user_id" is required'
+        }), 400    
     percent = get_weather_capture_progress(user_id)
     return jsonify({
         'progress': percent

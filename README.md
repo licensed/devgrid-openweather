@@ -28,5 +28,5 @@ curl -X POST -d "user_id=123" http://localhost:8000/weather
 Get the progress of the crawling.
 
 ```bash
-curl http://localhost:8000/weather/123/progress
+curl http://localhost:8000/weather/progress?user_id=123
 ```
