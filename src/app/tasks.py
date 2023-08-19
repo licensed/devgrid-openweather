@@ -6,7 +6,7 @@ from src.util import CITIES_IDS
 
 
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://redis:6379')
-DATA_PATH = os.environ.get('DATA_PATH', '/opt/app/data')
+DATA_PATH = os.environ.get('DATA_PATH', '/tmp')
 
 OPEN_WEATHER_API_URL = os.environ.get('OPEN_WEATHER_API_URL')
 OPEN_WEATHER_API_KEY = os.environ.get('OPEN_WEATHER_API_KEY')

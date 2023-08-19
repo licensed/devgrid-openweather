@@ -30,3 +30,9 @@ Get the progress of the crawling.
 ```bash
 curl http://localhost:8000/weather/progress?user_id=123
 ```
+
+## TESTS
+
+In order, to run the tests, DATA_PATH environment variable cannot be in .env file. So, tests will use /tmp as default data folder.
+
+TODO: Fix tests to use another folder with permission or create specific dotenv file for tests
