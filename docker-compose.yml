@@ -4,8 +4,7 @@ services:
   redis:
     image: redis
   api:
-    build: .
-    command: gunicorn -b 0.0.0.0:8000 src.app.app:app --reload
+    image: licensedbr/devgrid-openweather
     env_file: .env
     ports:
       - 8000:8000
@@ -14,12 +13,13 @@ services:
     depends_on:
       - redis
   worker:
-    build: .
+    image: licensedbr/devgrid-openweather
     command: celery -A src.app.tasks worker --loglevel=INFO
     env_file: .env
     volumes:
       - .:/opt/app/
     depends_on:
       - redis
-
-      
+  test:
+    image: licensedbr/devgrid-openweather
+    command: pytest src/tests/test_app.py

@@ -268,3 +268,6 @@ pyrightconfig.json
 
 # Data folder
 data/
+
+# Vscode
+.vscode/

@@ -1,11 +1,10 @@
 FROM python:3.9
 
-RUN mkdir -p /opt/app/
-
 WORKDIR /opt/app/
 
-ADD requirements.txt .
+COPY . /opt/app/
 
 RUN pip install -r requirements.txt
 
-ADD . .
+CMD [ "gunicorn", "-b", "0.0.0.0:8000", "src.app.app:app", "--reload" ]
+EXPOSE 8000
